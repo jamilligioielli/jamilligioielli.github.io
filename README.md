@@ -1,2 +1,2 @@
-# jamilli.dev
-Meu portfólio: site pessoal
+# Jamilli Gioielli
+Códigos e host da minha página pessoal
