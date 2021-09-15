@@ -104,17 +104,24 @@ function activateMenuAtCurrentSection(){
   }
 }
 
-//  Switch button //
-// const element = document.body
-// const button = document.querySelectorAll("i.switch")
-// button.onclick = function () {
-//   if (button.classList("icon-toggle-on")) {
-//     console.log("blackmode")
-    
-//   } else {
-//     console.log('whitemode')
-//   }
-// }
+//  Dark Mode//
+const body = document.querySelector('body')
+const menu = document.querySelector('header')
+const menuBurguer = document.querySelector('nav.show .menu')
+const end = document.querySelector('footer')
+const button = document.querySelector('#switch')
+
+button.addEventListener('change', function () {
+  body.classList.toggle('dark')
+  menu.classList.toggle('dark')
+  end.classList.toggle('dark')
+  
+
+  sections.forEach(element => {
+    element.classList.toggle('dark')
+  });
+  
+})
 
 
 
