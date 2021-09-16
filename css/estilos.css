@@ -174,7 +174,6 @@ nav {
 nav ul li,
 nav ul label {
 	text-align: center;
-	align-self: center;
 }
 
 nav ul li a {
@@ -203,6 +202,11 @@ nav ul li a::after {
 	bottom: -1.5rem;
 
 	transition: width 0.2s;
+}
+
+nav ul label{
+	align-self: center;
+	justify-self: center;
 }
 
 /* Modo Dark */
