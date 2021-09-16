@@ -107,7 +107,6 @@ function activateMenuAtCurrentSection(){
 //  Dark Mode//
 const body = document.querySelector('body')
 const menu = document.querySelector('header')
-const menuBurguer = document.querySelector('nav.show .menu')
 const end = document.querySelector('footer')
 const button = document.querySelector('#switch')
 
