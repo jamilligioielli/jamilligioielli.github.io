@@ -879,7 +879,7 @@ footer.dark .icons a:hover{
 /*    medium devices >   */
 @media (min-width: 465px) {
 	#skills .skills-box .lang-images .grid {
-		grid-template-columns: repeat(3, 100px);
+		grid-template-columns: repeat(3, 120px);
 	}
 
 	/* NAVIGATION */
@@ -916,14 +916,14 @@ footer.dark .icons a:hover{
 	}
 }
 
-@media (min-width: 660px) {
+@media (min-width: 709px) {
 	:root{
         --title-font-size: 3.5rem;
         --subtitle-font-size: 1.9rem;
     }
 
 	#skills .skills-box .lang-images .grid {
-		grid-template-columns: repeat(3, 150px);
+		grid-template-columns: repeat(4, 150px);
 	}
 
 	#skills .skills-box .lang-images i {
@@ -949,7 +949,7 @@ footer.dark .icons a:hover{
 @media (min-width: 992px){
     
 	#skills .skills-box .lang-images .grid{
-		grid-template-columns: repeat(4, 200px);
+		grid-template-columns: repeat(4, 175px);
 	}
 
 	nav .menu ul li a.title.active {
@@ -1109,13 +1109,13 @@ footer.dark .icons a:hover{
 
 	#skills .skills-box .lang-images ul.grid {
 		justify-content: center;
-		grid-template-columns: repeat(4, 240px);
+		grid-template-columns: repeat(5, 200px);
 		gap: 0.5rem;
 		row-gap: 6rem;
 	}
 
 	#skills .skills-box .lang-images i {
-		font-size: 5rem;
+		font-size: 6rem;
 	}
 
 	/* PROJETOS */

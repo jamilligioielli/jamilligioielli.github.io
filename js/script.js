@@ -31,14 +31,13 @@ const header = document.querySelector('#header')
 const navHeight = header.offsetHeight
 
 function changeHeaderWhenScroll() {
-
-  if (window.scrollY >= navHeight) {
-    // scroll é maior que a altura do header
-    header.classList.add('scroll')
-  } else {
-    // menor que a altura do header
-    header.classList.remove('scroll')
-  }
+	if (window.scrollY >= navHeight) {
+		// scroll é maior que a altura do header
+		header.classList.add('scroll')
+	} else {
+		// menor que a altura do header
+		header.classList.remove('scroll')
+	}
 }
 /* Skills carousel slider swiper */
 const swiper = new Swiper('.swiper-container', {
@@ -56,10 +55,10 @@ const swiper = new Swiper('.swiper-container', {
 
 /* ScrollReveal: Mostrar elementos quando der scroll na página */
 const scrollReveal = ScrollReveal({
-  origin: 'top',
-  distance: '30px',
-  duration: 600,
-  reset: true
+	origin: 'top',
+	distance: '30px',
+	duration: 600,
+	reset: true
 })
 
 scrollReveal.reveal(
@@ -75,34 +74,32 @@ scrollReveal.reveal(
 )
 
 
-
 // Menu ativo conforme a seção visivel na página //
 const sections = document.querySelectorAll('section[id]')
-function activateMenuAtCurrentSection(){
+function activateMenuAtCurrentSection() {
+	const checkpoint = window.pageYOffset + (window.innerHeight / 8) * 4
 
-  const checkpoint = window.pageYOffset + (window.innerHeight / 8) * 4
+	for (const section of sections) {
+		const sectionTop = section.offsetTop
+		const sectionHeight = section.offsetHeight
+		const sectionId = section.getAttribute('id')
 
-  for (const section of sections) {
-    const sectionTop = section.offsetTop
-    const sectionHeight = section.offsetHeight
-    const sectionId = section.getAttribute('id')
+		const checkpointStart = checkpoint >= sectionTop
+		const checkpointEnd = checkpoint <= sectionTop + sectionHeight
 
-    const checkpointStart = checkpoint >= sectionTop
-    const checkpointEnd = checkpoint <= sectionTop + sectionHeight
-    
-    if (checkpointStart && checkpointEnd) {
-      document
-        .querySelector('nav ul li a[href*=' + sectionId + ']')
-      .classList.add('active')
-    } else {
-      document
+		if (checkpointStart && checkpointEnd) {
+			document
+				.querySelector('nav ul li a[href*=' + sectionId + ']')
+				.classList.add('active')
+		} else {
+			document
 				.querySelector('nav ul li a[href*=' + sectionId + ']')
 				.classList.remove('active')
-      
-    }
-
-  }
+		}
+	}
 }
+
+
 
 //  Dark Mode//
 const body = document.querySelector('body')
@@ -111,22 +108,94 @@ const end = document.querySelector('footer')
 const button = document.querySelector('#switch')
 
 button.addEventListener('change', function () {
-  body.classList.toggle('dark')
-  menu.classList.toggle('dark')
-  end.classList.toggle('dark')
-  
+	body.classList.toggle('dark')
+	menu.classList.toggle('dark')
+	end.classList.toggle('dark')
 
-  sections.forEach(element => {
-    element.classList.toggle('dark')
-  });
-  
+	sections.forEach(element => {
+		element.classList.toggle('dark')
+	})
 })
+
+
+
+//  Form validation //
+const form = document.querySelector('form')
+const fields = document.querySelectorAll('[required]')
+
+function ValidateField(field) {
+	function verifyErrors() {
+		let foundError = false
+
+		for (let error in field.validity) {
+			if (field.validity[error] && !field.validity.valid) {
+				foundError = error
+			}
+		}
+
+		return foundError
+	}
+
+	function customMessage(typeError) {
+		const messages = {
+			text: {
+				valueMissing: 'Por favor, preencha esse campo'
+			},
+			email: {
+				valueMissing: 'Email é obrigatório',
+				typeMismatch: 'Por favor, preencha um email válido'
+			}
+		}
+
+		return messages[field.type][typeError]
+	}
+
+	function setCustomMessage(message) {
+		const spanError = field.parentNode.querySelector('span.error')
+		if (message) {
+			spanError.classList.add('active')
+			spanError.innerHTML = message
+		} else {
+			spanError.classList.remove('active')
+			spanError.innerHTML = ' '
+		}
+	}
+
+	return function () {
+		const error = verifyErrors()
+
+		if (verifyErrors()) {
+			const message = customMessage(error)
+
+			field.style.borderColor = 'red'
+			setCustomMessage(message)
+		} else {
+			field.style.borderColor = 'var(--text-color-light)'
+			setCustomMessage()
+		}
+	}
+}
+
+function customValidation(event) {
+	const field = event.target
+	const validation = ValidateField(field)
+
+	validation()
+}
+
+for (let field of fields) {
+	field.addEventListener('invalid', event => {
+		event.preventDefault()
+		customValidation(event)
+	})
+	field.addEventListener('blur', customValidation)
+}
 
 
 
 /* When Scroll */
 window.addEventListener('scroll', function () {
-  changeHeaderWhenScroll()
+	changeHeaderWhenScroll()
 	backToTop()
 	activateMenuAtCurrentSection()
 })
